@@ -13,7 +13,6 @@
   cursor: pointer;
 }
 
-/* Responsive wrapper for the whole page */
 .tasks-page-wrapper {
   min-height: 100vh;
   display: flex;
@@ -23,7 +22,7 @@
 
 .tasks-content {
   flex: 1 0 auto;
-  max-width: 1100px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 2rem 1rem 4rem 1rem;
   width: 100%;

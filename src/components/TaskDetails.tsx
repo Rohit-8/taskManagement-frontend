@@ -25,11 +25,14 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({ taskId, onClose }) => {
 
   return (
     <div className="task-details">
-      <h3>{task.title}</h3>
-      <p><strong>Description:</strong> {task.description}</p>
-      <p><strong>Assigned By:</strong> {task.assignedBy}</p>
-      <p><strong>Assigned To:</strong> {task.assignedTo}</p>
-      <p><strong>Created At:</strong> {new Date(task.createdAt).toLocaleString()}</p>
+      <h3>{task.title || ''}</h3>
+      <p><strong>Description:</strong> {task.description || ''}</p>
+      <p><strong>Assigned By:</strong> {task.assignedBy || ''}</p>
+      <p><strong>Assigned To:</strong> {task.assignedTo || ''}</p>
+      <p><strong>Created At:</strong> {task.createdAt ? new Date(task.createdAt).toLocaleString() : ''}</p>
+      <p><strong>Created By:</strong> {task.createdBy || ''}</p>
+      <p><strong>Priority:</strong> {task.priority ? (task.priority.charAt(0) + task.priority.slice(1).toLowerCase()) : ''}</p>
+      <p><strong>Category:</strong> {task.category ? (task.category.charAt(0) + task.category.slice(1).toLowerCase()) : ''}</p>
       <button onClick={onClose}>Close</button>
     </div>
   );

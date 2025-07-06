@@ -10,6 +10,8 @@ interface Task {
   assignedTo: string;
   createdAt: string;
   priority: string;
+  createdBy: string;
+  category: string;
 }
 
 interface Props {
@@ -103,6 +105,12 @@ const TaskList: React.FC<Props> = ({ onSelect, onEdit }) => {
             <th onClick={() => handleSort('priority')} style={{cursor: 'pointer'}}>
               Priority {sortKey === 'priority' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
             </th>
+            <th onClick={() => handleSort('category')} style={{cursor: 'pointer'}}>
+              Category {sortKey === 'category' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
+            </th>
+            <th onClick={() => handleSort('createdBy')} style={{cursor: 'pointer'}}>
+              Created By {sortKey === 'createdBy' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
+            </th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -146,6 +154,8 @@ const TaskList: React.FC<Props> = ({ onSelect, onEdit }) => {
                     : task.priority}
                 </span>
               </td>
+              <td>{task.category ? (task.category.charAt(0) + task.category.slice(1).toLowerCase()) : ''}</td>
+              <td>{task.createdBy || ''}</td>
               <td className="task-actions">
                 <button className="fancy-btn view-btn" onClick={() => onSelect(task)}>View</button>
                 <button className="fancy-btn edit-btn" onClick={() => navigate(`/tasks/update/${task.id}`)}>Edit</button>

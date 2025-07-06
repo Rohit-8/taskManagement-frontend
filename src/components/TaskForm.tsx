@@ -15,6 +15,7 @@ const emptyTask = {
   assignedTo: '',
   createdBy: '',
   priority: '', // Add priority to emptyTask
+  category: '', // Add category to emptyTask
 };
 
 const TaskForm: React.FC<TaskFormProps> = ({ initialTask, onSuccess }) => {
@@ -82,6 +83,39 @@ const TaskForm: React.FC<TaskFormProps> = ({ initialTask, onSuccess }) => {
         <option value="LOW">Low</option>
         <option value="MEDIUM">Medium</option>
         <option value="HIGH">High</option>
+      </select>
+      <select
+        name="category"
+        value={task.category}
+        onChange={handleChange}
+        required
+        className={
+          task.category === 'BUG'
+            ? 'category-bug'
+            : task.category === 'FEATURE'
+            ? 'category-feature'
+            : task.category === 'IMPROVEMENT'
+            ? 'category-improvement'
+            : task.category === 'RESEARCH'
+            ? 'category-research'
+            : ''
+        }
+        style={{
+          padding: '0.5em 1em',
+          borderRadius: '0.5em',
+          border: '1px solid #ccc',
+          fontWeight: 500,
+          fontSize: '1em',
+          marginBottom: '1em',
+          background: '#f9f9f9',
+          color: '#333',
+        }}
+      >
+        <option value="">Select Category</option>
+        <option value="BUG">🐞 Bug</option>
+        <option value="FEATURE">✨ Feature</option>
+        <option value="IMPROVEMENT">🔧 Improvement</option>
+        <option value="RESEARCH">🔬 Research</option>
       </select>
       <div className="task-form-buttons">
         <button type="submit" disabled={loading}>{task.id ? 'Update' : 'Create'} Task</button>
