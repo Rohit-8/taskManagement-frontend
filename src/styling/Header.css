@@ -1,0 +1,47 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #004f9e;
+  padding: 0.75rem 2rem;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.app-logo {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-size: 1rem;
+}
+
+.navbar-links a:hover {
+  text-decoration: underline;
+}
+
+.profile-icon {
+  margin-left: 1.5rem;
+  font-size: 1.3rem;
+  vertical-align: middle;
+}
+
+.auth-btn {
+  margin-left: 1.2rem;
+  background: white;
+  color: #004f9e;
+  border: none;
+  border-radius: 4px;
+  padding: 0.3rem 0.9rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.auth-btn:hover {
+  background: #e3e3e3;
+}

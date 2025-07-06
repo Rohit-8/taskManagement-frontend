@@ -1,0 +1,74 @@
+/* Modern, attractive, and responsive styles for TaskDetails */
+.task-details {
+  max-width: 600px;
+  width: 90vw;
+  margin: 2rem auto;
+  padding: 2rem 2.5rem;
+  background: linear-gradient(135deg, #f8fafc 60%, #e0e7ff 100%);
+  border-radius: 2rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.13);
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  color: #2f2e2e;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  animation: fadeIn 0.5s;
+}
+
+.task-details h3 {
+  margin-bottom: 0.7rem;
+  font-size: 2rem;
+  color: #181A18;
+  letter-spacing: 1px;
+}
+
+.task-details p {
+  margin: 0.2rem 0;
+  font-size: 1.13rem;
+  line-height: 1.6;
+}
+
+.task-details strong {
+  color: #004f9e;
+}
+
+.task-details button {
+  align-self: flex-end;
+  background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
+  color: #fff;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.8rem 1.3rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1.2rem;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.10);
+  transition: background 0.2s, transform 0.1s;
+}
+
+.task-details button:hover:not(:disabled) {
+  background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
+  transform: translateY(-2px) scale(1.03);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  .task-details {
+    padding: 1.2rem 0.7rem;
+    border-radius: 1rem;
+    gap: 0.7rem;
+  }
+  .task-details h3 {
+    font-size: 1.3rem;
+  }
+  .task-details button {
+    font-size: 1rem;
+    padding: 0.7rem 0.8rem;
+    border-radius: 0.7rem;
+  }
+}
