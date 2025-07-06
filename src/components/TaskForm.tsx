@@ -14,6 +14,7 @@ const emptyTask = {
   assignedBy: '',
   assignedTo: '',
   createdBy: '',
+  priority: '', // Add priority to emptyTask
 };
 
 const TaskForm: React.FC<TaskFormProps> = ({ initialTask, onSuccess }) => {
@@ -28,7 +29,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ initialTask, onSuccess }) => {
     setTask(initialTask || emptyTask);
   }, [initialTask]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setTask({ ...task, [e.target.name]: e.target.value });
   };
 
@@ -62,6 +63,12 @@ const TaskForm: React.FC<TaskFormProps> = ({ initialTask, onSuccess }) => {
       <textarea name="description" value={task.description} onChange={handleChange} placeholder="Description" required />
       <input name="assignedBy" value={task.assignedBy} onChange={handleChange} placeholder="Assigned By" required />
       <input name="assignedTo" value={task.assignedTo} onChange={handleChange} placeholder="Assigned To" required />
+      <select name="priority" value={task.priority} onChange={handleChange} required>
+        <option value="">Select Priority</option>
+        <option value="LOW">Low</option>
+        <option value="MEDIUM">Medium</option>
+        <option value="HIGH">High</option>
+      </select>
       <div className="task-form-buttons">
         <button type="submit" disabled={loading}>{task.id ? 'Update' : 'Create'} Task</button>
         <button type="button" onClick={handleCancel} disabled={loading}>Cancel</button>

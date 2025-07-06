@@ -9,6 +9,7 @@ interface Task {
   assignedBy: string;
   assignedTo: string;
   createdAt: string;
+  priority: string;
 }
 
 interface Props {
@@ -99,6 +100,9 @@ const TaskList: React.FC<Props> = ({ onSelect, onEdit }) => {
             <th onClick={() => handleSort('createdAt')} style={{cursor: 'pointer'}}>
               Created At {sortKey === 'createdAt' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
             </th>
+            <th onClick={() => handleSort('priority')} style={{cursor: 'pointer'}}>
+              Priority {sortKey === 'priority' ? (sortOrder === 'asc' ? '▲' : '▼') : ''}
+            </th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -110,6 +114,7 @@ const TaskList: React.FC<Props> = ({ onSelect, onEdit }) => {
               <td>{task.assignedBy}</td>
               <td>{task.assignedTo}</td>
               <td>{new Date(task.createdAt).toLocaleString()}</td>
+              <td>{task.priority}</td>
               <td className="task-actions">
                 <button className="fancy-btn view-btn" onClick={() => onSelect(task)}>View</button>
                 <button className="fancy-btn edit-btn" onClick={() => navigate(`/tasks/update/${task.id}`)}>Edit</button>

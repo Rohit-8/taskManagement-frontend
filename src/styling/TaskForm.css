@@ -15,7 +15,8 @@
 }
 
 .task-form input,
-.task-form textarea {
+.task-form textarea,
+.task-form select[name="priority"] {
   padding: 0.9rem 1.2rem;
   border: none;
   border-radius: 1rem;
@@ -27,7 +28,8 @@
 }
 
 .task-form input:focus,
-.task-form textarea:focus {
+.task-form textarea:focus,
+.task-form select[name="priority"]:focus {
   background: #e0e7ff;
   box-shadow: 0 0 0 2px #f1f5f9;
 }
@@ -109,6 +111,29 @@
   padding-bottom: 0.2rem;
 }
 
+.task-form select[name="priority"] {
+  padding: 0.9rem 1.2rem;
+  border: none;
+  border-radius: 1rem;
+  background: #f1f5f9;
+  font-size: 1.1rem;
+  transition: box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 2px 8px rgba(60, 60, 120, 0.04);
+  outline: none;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.task-form select[name="priority"]:focus {
+  background: #e0e7ff;
+  box-shadow: 0 0 0 2px #f1f5f9;
+}
+
+.task-form select[name="priority"] option {
+  background: #fff;
+  color: #1e293b;
+}
+
 @media (max-width: 600px) {
   .task-form {
     padding: 1.2rem 0.7rem;
@@ -116,7 +141,8 @@
     gap: 0.7rem;
   }
   .task-form input,
-  .task-form textarea {
+  .task-form textarea,
+  .task-form select[name="priority"] {
     font-size: 1rem;
     padding: 0.7rem 0.8rem;
     border-radius: 0.7rem;
