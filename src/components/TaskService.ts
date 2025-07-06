@@ -3,8 +3,9 @@
 
 const API_BASE = process.env.REACT_APP_TASKS_URI + '/api/tasks';
 
-export async function getAllTasks() {
-  const res = await fetch(API_BASE);
+export async function getAllTasks({ page = 0, size = 5, sortBy = 'title', sortDir = 'asc' } = {}) {
+  const url = `${API_BASE}?page=${page}&size=${size}&sortBy=${sortBy}&sortDir=${sortDir}`;
+  const res = await fetch(url);
   if (!res.ok) throw new Error('Failed to fetch tasks');
   return res.json();
 }

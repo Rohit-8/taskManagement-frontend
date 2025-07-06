@@ -23,38 +23,48 @@ const TaskList: React.FC<Props> = ({ onSelect, onEdit }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [sortKey, setSortKey] = useState<keyof Task>('title');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalElements, setTotalElements] = useState(0);
   const tasksPerPage = 5;
   const navigate = useNavigate();
 
   useEffect(() => {
-    getAllTasks()
-      .then(setTasks)
+    setLoading(true);
+    setError(null);
+    getAllTasks({
+      page: currentPage - 1,
+      size: tasksPerPage,
+      sortBy: sortKey,
+      sortDir: sortOrder,
+    })
+      .then((data) => {
+        setTasks(data.content);
+        setTotalPages(data.totalPages);
+        setTotalElements(data.totalElements);
+      })
       .catch(e => setError(e.message))
       .finally(() => setLoading(false));
-  }, []);
+  }, [currentPage, sortKey, sortOrder]);
 
   const handleDelete = async (id: number) => {
     if (!window.confirm('Delete this task?')) return;
     await deleteTask(id);
-    setTasks(tasks.filter(t => t.id !== id));
+    
+    setLoading(true);
+    getAllTasks({
+      page: currentPage - 1,
+      size: tasksPerPage,
+      sortBy: sortKey,
+      sortDir: sortOrder,
+    })
+      .then((data) => {
+        setTasks(data.content);
+        setTotalPages(data.totalPages);
+        setTotalElements(data.totalElements);
+      })
+      .catch(e => setError(e.message))
+      .finally(() => setLoading(false));
   };
-
-  const sortedTasks = [...tasks].sort((a, b) => {
-    let aValue = a[sortKey];
-    let bValue = b[sortKey];
-    if (sortKey === 'createdAt') {
-      aValue = new Date(aValue).getTime();
-      bValue = new Date(bValue).getTime();
-    }
-    if (aValue < bValue) return sortOrder === 'asc' ? -1 : 1;
-    if (aValue > bValue) return sortOrder === 'asc' ? 1 : -1;
-    return 0;
-  });
-
-  const indexOfLastTask = currentPage * tasksPerPage;
-  const indexOfFirstTask = indexOfLastTask - tasksPerPage;
-  const currentTasks = sortedTasks.slice(indexOfFirstTask, indexOfLastTask);
-  const totalPages = Math.ceil(tasks.length / tasksPerPage);
 
   const handleSort = (key: keyof Task) => {
     if (sortKey === key) {
@@ -93,7 +103,7 @@ const TaskList: React.FC<Props> = ({ onSelect, onEdit }) => {
           </tr>
         </thead>
         <tbody>
-          {currentTasks.map(task => (
+          {tasks.map(task => (
             <tr key={task.id}>
               <td>{task.title}</td>
               <td>{task.description}</td>
@@ -133,6 +143,9 @@ const TaskList: React.FC<Props> = ({ onSelect, onEdit }) => {
         >
           {'>'}
         </button>
+      </div>
+      <div style={{marginTop: 8, fontSize: 12}}>
+        Showing {tasks.length} of {totalElements} tasks
       </div>
     </div>
   );
