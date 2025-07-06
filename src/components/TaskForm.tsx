@@ -63,7 +63,21 @@ const TaskForm: React.FC<TaskFormProps> = ({ initialTask, onSuccess }) => {
       <textarea name="description" value={task.description} onChange={handleChange} placeholder="Description" required />
       <input name="assignedBy" value={task.assignedBy} onChange={handleChange} placeholder="Assigned By" required />
       <input name="assignedTo" value={task.assignedTo} onChange={handleChange} placeholder="Assigned To" required />
-      <select name="priority" value={task.priority} onChange={handleChange} required>
+      <select
+        name="priority"
+        value={task.priority}
+        onChange={handleChange}
+        required
+        className={
+          task.priority === 'HIGH'
+            ? 'priority-high'
+            : task.priority === 'MEDIUM'
+            ? 'priority-medium'
+            : task.priority === 'LOW'
+            ? 'priority-low'
+            : ''
+        }
+      >
         <option value="">Select Priority</option>
         <option value="LOW">Low</option>
         <option value="MEDIUM">Medium</option>

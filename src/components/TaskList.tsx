@@ -114,7 +114,38 @@ const TaskList: React.FC<Props> = ({ onSelect, onEdit }) => {
               <td>{task.assignedBy}</td>
               <td>{task.assignedTo}</td>
               <td>{new Date(task.createdAt).toLocaleString()}</td>
-              <td>{task.priority}</td>
+              <td>
+                <span
+                  className={
+                    task.priority === 'HIGH'
+                      ? 'priority-high'
+                      : task.priority === 'MEDIUM'
+                      ? 'priority-medium'
+                      : task.priority === 'LOW'
+                      ? 'priority-low'
+                      : ''
+                  }
+                  style={{
+                    padding: '0.3em 0.8em',
+                    borderRadius: '0.7em',
+                    fontWeight: 600,
+                    fontSize: '0.98em',
+                    letterSpacing: '0.5px',
+                    display: 'inline-block',
+                    minWidth: 70,
+                    textAlign: 'center',
+                    textTransform: 'capitalize',
+                  }}
+                >
+                  {task.priority === 'HIGH'
+                    ? 'High'
+                    : task.priority === 'MEDIUM'
+                    ? 'Medium'
+                    : task.priority === 'LOW'
+                    ? 'Low'
+                    : task.priority}
+                </span>
+              </td>
               <td className="task-actions">
                 <button className="fancy-btn view-btn" onClick={() => onSelect(task)}>View</button>
                 <button className="fancy-btn edit-btn" onClick={() => navigate(`/tasks/update/${task.id}`)}>Edit</button>

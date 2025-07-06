@@ -134,6 +134,46 @@
   color: #1e293b;
 }
 
+.task-form select[name="priority"].priority-high {
+  background: #fee2e2 !important;
+  color: #b91c1c !important;
+  border: 1.5px solid #ef4444;
+}
+
+.task-form select[name="priority"].priority-medium {
+  background: #fef9c3 !important;
+  color: #b45309 !important;
+  border: 1.5px solid #facc15;
+}
+
+.task-form select[name="priority"].priority-low {
+  background: #dcfce7 !important;
+  color: #15803d !important;
+  border: 1.5px solid #22c55e;
+}
+
+.task-table .priority-high {
+  background: #fee2e2 !important;
+  color: #b91c1c !important;
+  border: 1.5px solid #ef4444;
+}
+.task-table .priority-medium {
+  background: #fef9c3 !important;
+  color: #b45309 !important;
+  border: 1.5px solid #facc15;
+}
+.task-table .priority-low {
+  background: #dcfce7 !important;
+  color: #15803d !important;
+  border: 1.5px solid #22c55e;
+}
+.task-table .priority-high,
+.task-table .priority-medium,
+.task-table .priority-low {
+  min-width: 56px !important; /* 20% less than 70px */
+  padding: 0.3em 0.5em !important;
+}
+
 @media (max-width: 600px) {
   .task-form {
     padding: 1.2rem 0.7rem;
